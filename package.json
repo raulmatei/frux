@@ -1,0 +1,13 @@
+{
+  "name": "frux",
+  "version": "0.0.0",
+  "description": "Simple wrapper over NuclearJS flux implementation",
+  "main": "index.js",
+  "author": "Raul Matei",
+  "license": "Artistic-2.0",
+  "readme": "README.md",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/raulmatei/frux"
+  }
+}
