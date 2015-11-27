@@ -1,21 +1,16 @@
 import forEach from 'lodash/collection/forEach';
 
-let target = {};
+let cachedReactor = {};
 
-export default function createInterface(spec) {
-  const { context, reactor, ...modules } = spec;
-
-  target = reactor;
-
-  forEach(modules, (module) => {
-    module(context, reactor);
-  });
+export default function injectModules({ context, reactor, ...modules }) {
+  cachedReactor = reactor;
+  forEach(modules, (module) => module(context, reactor));
 }
 
 export function dispatch({ type, ...payload }) {
-  target.dispatch(type, payload);
+  cachedReactor.dispatch(type, payload);
 }
 
 export function evaluate(path, callback) {
-  target.evaluate(path, callback);
+  cachedReactor.evaluate(path, callback);
 }

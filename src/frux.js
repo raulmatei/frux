@@ -5,7 +5,7 @@ import context from 'frux/main';
 import { render } from 'react-dom';
 import Root from 'frux/containers/root';
 
-import createInterface from 'frux/core/interface';
+import injectModules from 'frux/core/interface';
 import counter from 'frux/modules/counter';
 import Counter from 'frux/components/counter';
 
@@ -32,7 +32,7 @@ function mount() {
 }
 
 export function initialize(spec) {
-  createInterface({
+  injectModules({
     context,
     reactor,
 
