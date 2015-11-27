@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Raul Matei",
   "license": "Artistic-2.0",
-  "readme": "README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/raulmatei/frux"
