@@ -1,5 +1,5 @@
 import React, { Component, Children } from 'react';
-import context from 'frux/main';
+import { provideReactor } from 'nuclear-js-react-addons';
 
 class Root extends Component {
   render() {
@@ -7,4 +7,4 @@ class Root extends Component {
   }
 }
 
-export default context.provide(Root);
+export default provideReactor(Root);
