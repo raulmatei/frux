@@ -20,9 +20,6 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    alias: {
-      frux: path.resolve(__dirname, 'src')
-    }
+    extensions: ['', '.js', '.jsx']
   }
 };

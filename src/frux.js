@@ -5,9 +5,9 @@ import { Reactor } from 'nuclear-js';
 import forEach from 'lodash/collection/forEach';
 import isFunction from 'lodash/lang/isFunction';
 import { nuclearComponent } from 'nuclear-js-react-addons';
-import Root from 'frux/containers/root';
-import createStore from 'frux/create-store';
-import createModule from 'frux/create-module';
+import Root from './containers/root';
+import createStore from './create-store';
+import createModule from './create-module';
 
 let reactor = null;
 export const actions = {};
