@@ -1,27 +1,26 @@
 {
-  "name": "frux",
-  "version": "0.0.5",
-  "description": "Simple wrapper over NuclearJS flux implementation",
-  "main": "./lib/frux.js",
+  "name": "frux-counter-example",
+  "version": "1.0.0",
+  "description": "Frux counter example",
+  "main": "index.js",
+  "keywords": [
+    "NuclearJS",
+    "frux"
+  ],
   "author": "Raul Matei",
-  "license": "Artistic-2.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/raulmatei/frux"
-  },
+  "license": "ISC",
   "scripts": {
-    "build": "babel src --out-dir lib"
+    "start": "./node_modules/.bin/webpack-dev-server -d --hot --inline"
   },
   "dependencies": {
-    "history": "^1.13.1",
+    "frux": "^0.1.x",
     "immutable": "^3.7.5",
     "invariant": "^2.2.0",
     "lodash": "^3.10.1",
     "nuclear-js": "^1.2.1",
     "nuclear-js-react-addons": "^0.2.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "react-router": "^1.0.0"
+    "react-dom": "^0.14.3"
   },
   "devDependencies": {
     "babel-core": "^6.2.4",
