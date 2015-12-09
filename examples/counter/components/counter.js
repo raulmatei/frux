@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import context from 'frux/main';
+import frux, { actions, getters } from 'frux';
 
 const commonStyles = {
   width: 32,
@@ -33,7 +33,7 @@ const btnStyles = {
 class Counter extends Component {
   static getDataBindings() {
     return {
-      count: context.getters.count
+      count: getters.counter.count
     };
   }
 
@@ -47,7 +47,7 @@ class Counter extends Component {
         <button
           type='button'
           style={btnStyles.increment}
-          onClick={context.actions.increment}
+          onClick={actions.counter.increment}
         >
           <strong>+</strong>
         </button>
@@ -56,7 +56,7 @@ class Counter extends Component {
           type='button'
           style={btnStyles.decrement}
           disabled={shouldDisableDecrement}
-          onClick={context.actions.decrement}
+          onClick={actions.counter.decrement}
         >
           <strong>-</strong>
         </button>
@@ -64,7 +64,7 @@ class Counter extends Component {
         <button
           type='button'
           style={btnStyles.reset}
-          onClick={context.actions.reset}
+          onClick={actions.counter.reset}
         >
           Reset
         </button>
@@ -73,4 +73,4 @@ class Counter extends Component {
   }
 }
 
-export default context.connect(Counter);
+export default frux.connect(Counter);
