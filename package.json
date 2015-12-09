@@ -10,7 +10,7 @@
     "url": "https://github.com/raulmatei/frux"
   },
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server -d --hot --inline"
+    "build": "babel src --out-dir lib"
   },
   "dependencies": {
     "history": "^1.13.1",
