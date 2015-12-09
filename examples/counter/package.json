@@ -1,0 +1,36 @@
+{
+  "name": "frux-counter-example",
+  "version": "1.0.0",
+  "description": "Frux counter example",
+  "main": "index.js",
+  "keywords": [
+    "NuclearJS",
+    "frux"
+  ],
+  "author": "Raul Matei",
+  "license": "ISC",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server -d --hot --inline"
+  },
+  "dependencies": {
+    "history": "^1.13.1",
+    "immutable": "^3.7.5",
+    "invariant": "^2.2.0",
+    "lodash": "^3.10.1",
+    "nuclear-js": "^1.2.1",
+    "nuclear-js-react-addons": "^0.2.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-router": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.2.4",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.2.4",
+    "babel-preset-react": "^6.2.4",
+    "babel-preset-stage-0": "^6.2.4",
+    "react-hot-loader": "^1.3.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  }
+}
