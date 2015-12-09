@@ -13,15 +13,14 @@
     "start": "./node_modules/.bin/webpack-dev-server -d --hot --inline"
   },
   "dependencies": {
-    "history": "^1.13.1",
+    "frux": "git+ssh://git@github.com:raulmatei/frux.git#feature/initial-api",
     "immutable": "^3.7.5",
     "invariant": "^2.2.0",
     "lodash": "^3.10.1",
     "nuclear-js": "^1.2.1",
     "nuclear-js-react-addons": "^0.2.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "react-router": "^1.0.0"
+    "react-dom": "^0.14.3"
   },
   "devDependencies": {
     "babel-core": "^6.2.4",
