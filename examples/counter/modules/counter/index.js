@@ -1,4 +1,4 @@
-import frux from '../../../../src/frux';
+import frux from 'frux';
 
 import * as counterHandlers from './handlers';
 import * as actions from './actions';

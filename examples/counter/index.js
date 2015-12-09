@@ -1,4 +1,4 @@
-import frux from '../../src/frux';
+import frux from 'frux';
 import counter from './modules/counter';
 import Counter from './components/counter';
 

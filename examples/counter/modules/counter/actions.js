@@ -1,4 +1,4 @@
-import { dispatch } from '../../../../src/frux';
+import { dispatch } from 'frux';
 import { INCREMENT, DECREMENT, RESET } from './action-types';
 
 export function increment() {

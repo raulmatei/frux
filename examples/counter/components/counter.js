@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import frux, { actions, getters } from '../../../src/frux';
+import frux, { actions, getters } from 'frux';
 
 const commonStyles = {
   width: 32,
