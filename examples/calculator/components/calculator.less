@@ -1,0 +1,134 @@
+* {
+  font-family: "Segoe UI";
+}
+
+html,
+body {
+  height: 100%;
+
+  font-size: 100%;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+   user-select: none;
+
+  background-color: lighten(#2C3E50, 20%);
+}
+
+.calculator-viewport {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 330px;
+  height: 494px;
+
+  margin-top: -248px;
+  margin-left: -160px;
+
+  background-color: #2C3E50;
+  box-shadow: 0 0 42px rgba(0, 0, 0, 0.35);
+}
+
+table {
+  cursor: default;
+
+  tr {
+    padding: 0;
+    margin: 0;
+  }
+
+  td {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.calculator-result {
+  padding: 0 9px;
+  background-color: #ffffff;
+
+  .expression {
+    max-width: 308px;
+    height: 24px;
+    line-height: 32px;
+    text-align: right;
+    color: #aaa;
+  }
+
+  .last {
+    display: block;
+    max-width: 308px;
+    height: 56px;
+
+    font-size: 140%;
+    font-weight: bold;
+    line-height: 56px;
+    text-align: right;
+    color: #2C3E50;
+  }
+
+  .operator {
+    margin: 0 4px;
+  }
+}
+
+button {
+  width: 80px;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  background-color: #ECF0F1;
+  font-size: 24px;
+  color: #2C3E50;
+  user-select: none;
+  color: #ffffff;
+  background-color: lighten(#2C3E50, 10%);
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: 1px dotted darken(#ffffff, 10%);
+  }
+
+  &.equal {
+    color: #FFFFFF;
+    background-color: #E74C3C;
+
+    &:hover {
+      background-color: darken(#E74C3C, 10%);
+    }
+  }
+
+  &.signs {
+    color: #FFFFFF;
+    background-color: #3498DB;
+
+    &:hover {
+      background-color: darken(#3498DB, 10%);
+    }
+  }
+
+  &.backspace {
+    font-family: "Segoe UI Symbol";
+  }
+
+  &.wider {
+    width: 162px;
+  }
+}
+
+.hidden {
+  display: hidden;
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+
+  width: 0;
+  height: 0;
+
+  overflow: hidden;
+}
