@@ -4,7 +4,6 @@ import frux, { actions, getters } from 'frux';
 import Button from './button';
 import Result from './result';
 import './calculator.less';
-import keyCodes from '../modules/operations/char-codes';
 
 const BACKSPACE = '\u232B';
 
@@ -21,10 +20,6 @@ class Calculator extends Component {
 
   handleAppendNumber(value) {
     actions.operations.inputNumber(value);
-  }
-
-  handleReset() {
-    actions.operations.reset();
   }
 
   handleKeyPress(event) {
@@ -108,7 +103,7 @@ class Calculator extends Component {
                 <Button value='CE' onAction={actions.operations.deleteLast}/>
               </td>
               <td>
-                <Button value='C' onAction={this.handleReset}/>
+                <Button value='C' onAction={actions.operations.reset}/>
               </td>
               <td>
                 <Button
