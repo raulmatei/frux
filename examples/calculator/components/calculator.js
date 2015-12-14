@@ -73,6 +73,11 @@ class Calculator extends Component {
   componentDidMount() {
     this.input = ReactDOM.findDOMNode(this.refs.Input);
     this.focusOnHiddenInput();
+    window.addEventListener('mouseup', this.focusOnHiddenInput.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mouseup', this.focusOnHiddenInput.bind(this));
   }
 
   render() {
