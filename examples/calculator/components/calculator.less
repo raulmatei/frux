@@ -1,5 +1,23 @@
+@white: #ffffff;
+@black: #000000;
+@orange: #E74C3C;
+@blue: #3498db;
+@dark-gray: #aaaaaa;
+@light-gray: #ecf0f1;
+@dark-blue: #2c3e50;
+
+@font-primary: "Segoe UI";
+@font-symbols: "Segoe UI Symbol";
+
+.user-select(@value: none) {
+  -moz-user-select: @value;
+  -webkit-user-select: @value;
+  -ms-user-select: @value;
+   user-select: @value;
+}
+
 * {
-  font-family: "Segoe UI";
+  font-family: @font-primary;
 }
 
 html,
@@ -7,12 +25,9 @@ body {
   height: 100%;
 
   font-size: 100%;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-   user-select: none;
+  .user-select();
 
-  background-color: lighten(#2C3E50, 20%);
+  background-color: lighten(@dark-blue, 20%);
 }
 
 .calculator-viewport {
@@ -25,8 +40,8 @@ body {
   margin-top: -248px;
   margin-left: -160px;
 
-  background-color: #2C3E50;
-  box-shadow: 0 0 42px rgba(0, 0, 0, 0.35);
+  background-color: @dark-blue;
+  box-shadow: 0 0 42px fade(@black, 35%);
 }
 
 table {
@@ -45,14 +60,15 @@ table {
 
 .calculator-result {
   padding: 0 9px;
-  background-color: #ffffff;
+  background-color: @white;
 
   .expression {
-    max-width: 308px;
     height: 24px;
+    max-width: 308px;
+
     line-height: 32px;
     text-align: right;
-    color: #aaa;
+    color: @dark-gray;
   }
 
   .last {
@@ -64,7 +80,7 @@ table {
     font-weight: bold;
     line-height: 56px;
     text-align: right;
-    color: #2C3E50;
+    color: @dark-blue;
   }
 
   .operator {
@@ -79,41 +95,41 @@ button {
   padding: 0;
 
   border: 0;
-  background-color: #ECF0F1;
+  background-color: @light-gray;
   font-size: 24px;
-  color: #2C3E50;
+  color: @dark-blue;
   user-select: none;
-  color: #ffffff;
-  background-color: lighten(#2C3E50, 10%);
+  color: @white;
+  background-color: lighten(@dark-blue, 10%);
 
   &:hover {
     background-color: transparent;
   }
 
   &:focus {
-    outline: 1px dotted darken(#ffffff, 10%);
+    outline: 1px dotted darken(@white, 10%);
   }
 
   &.equal {
-    color: #FFFFFF;
-    background-color: #E74C3C;
+    color: @white;
+    background-color: @orange;
 
     &:hover {
-      background-color: darken(#E74C3C, 10%);
+      background-color: darken(@orange, 10%);
     }
   }
 
   &.signs {
-    color: #FFFFFF;
-    background-color: #3498DB;
+    color: @white;
+    background-color: @blue;
 
     &:hover {
-      background-color: darken(#3498DB, 10%);
+      background-color: darken(@blue, 10%);
     }
   }
 
   &.backspace {
-    font-family: "Segoe UI Symbol";
+    font-family: @font-symbols;
   }
 
   &.wider {
