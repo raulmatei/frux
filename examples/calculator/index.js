@@ -1,4 +1,4 @@
-import frux from '../../src/frux';
+import frux from 'frux';
 import operations from './modules/operations';
 import Calculator from './components/calculator';
 

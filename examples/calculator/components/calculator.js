@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-import frux, { actions, getters } from 'frux';
+import frux, { actions } from 'frux';
 import Button from './button';
 import Result from './result';
 import './calculator.less';
@@ -8,7 +8,7 @@ import './calculator.less';
 const BACKSPACE = '\u232B';
 
 class Calculator extends Component {
-  static getDataBindings() {
+  static getDataBindings(getters) {
     return {
       expression: getters.operations.expression
     };

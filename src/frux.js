@@ -10,6 +10,7 @@ import createStore from './create-store';
 import createModule from './create-module';
 
 let reactor = null;
+
 export const actions = {};
 export const getters = {};
 
@@ -22,7 +23,7 @@ function connect(BaseComponent) {
     `${displayName} component should implement 'getDataBindings' static method`
   );
 
-  return nuclearComponent(BaseComponent, (props) => getDataBindings());
+  return nuclearComponent(BaseComponent, (props) => getDataBindings(getters));
 }
 
 function createMountingNode() {
