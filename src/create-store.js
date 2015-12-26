@@ -7,7 +7,7 @@ import { Store, toImmutable } from 'nuclear-js';
 export default function createStore(initialState, handlers) {
   const immutableState = toImmutable(initialState);
 
-  return Store({
+  const spec = {
     getInitialState() {
       return immutableState;
     },
@@ -29,5 +29,7 @@ export default function createStore(initialState, handlers) {
         });
       }
     }
-  });
+  };
+
+  return new Store(spec);
 }
