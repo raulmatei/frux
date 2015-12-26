@@ -1,9 +1,5 @@
 import frux from 'frux';
-import operations from './modules/operations';
+import React from 'react';
 import Calculator from './components/calculator';
 
-frux.initialize({
-  component: Calculator,
-  options: { debug: true },
-  operations
-});
+frux.mount(<Calculator/>);

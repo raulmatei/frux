@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import frux, { actions } from 'frux';
+import frux from 'frux';
+import { actions } from '../application-context';
 
 const commonStyles = {
   width: 32,

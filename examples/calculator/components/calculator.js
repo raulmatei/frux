@@ -1,8 +1,9 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-import frux, { actions } from 'frux';
+import frux from 'frux';
 import Button from './button';
 import Result from './result';
+import { actions } from '../application-context';
 import './calculator.less';
 
 const BACKSPACE = '\u232B';
