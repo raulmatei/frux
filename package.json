@@ -12,6 +12,7 @@
   "scripts": {
     "build": "babel src --out-dir lib"
   },
+  "files": ["lib", "src"],
   "dependencies": {
     "history": "^1.13.1",
     "immutable": "^3.7.5",
