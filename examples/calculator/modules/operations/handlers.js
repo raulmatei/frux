@@ -73,6 +73,6 @@ export function deleteLast(currentState, payload, initialState) {
   return currentState.set('expression', expr.pop());
 }
 
-export function reset(currentState, payload, initialState) {
+export function clear(currentState, payload, initialState) {
   return initialState;
 }

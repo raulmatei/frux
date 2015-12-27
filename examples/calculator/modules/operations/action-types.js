@@ -1,4 +1,5 @@
-export const LOAD_DATA = 'LOAD_DATA';
-export const TOGGLE_SELECT = 'TOGGLE_SELECT';
-export const TOGGLE_SELECT_ALL = 'TOGGLE_SELECT_ALL';
-export const FILTER_RESULTS = 'FILTER_RESULTS';
+export const SEND_OPERATOR = 'SEND_OPERATOR';
+export const INPUT_NUMBER = 'INPUT_NUMBER';
+export const DELETE_LAST = 'DELETE_LAST';
+export const COMPUTE_RESULT = 'COMPUTE_RESULT';
+export const CLEAR = 'CLEAR';

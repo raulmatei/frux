@@ -43,7 +43,7 @@ class Calculator extends Component {
 
   handleKeyUp(event) {
     const { keyCode } = event;
-    const { reset, deleteLast, computeResult } = actions.operations;
+    const { clear, deleteLast, computeResult } = actions.operations;
 
     if (event && event.preventDefault) {
       event.preventDefault();
@@ -54,7 +54,7 @@ class Calculator extends Component {
     }
 
     if (keyCode === 27) {
-      return reset();
+      return clear();
     }
 
     if (keyCode === 8) {
@@ -104,7 +104,7 @@ class Calculator extends Component {
                 <Button value='CE' onAction={actions.operations.deleteLast}/>
               </td>
               <td>
-                <Button value='C' onAction={actions.operations.reset}/>
+                <Button value='C' onAction={actions.operations.clear}/>
               </td>
               <td>
                 <Button
