@@ -14,8 +14,8 @@ export default function createStore(initialState, handlers) {
 
     initialize() {
       if (!isEmpty(handlers)) {
-        forEach(handlers, (handler, handlerName) => {
-          const ACTION_NAME = snakeCase(handlerName || '').toUpperCase();
+        forEach(handlers, (handler, handlerName = '') => {
+          const ACTION_NAME = snakeCase(handlerName).toUpperCase();
 
           if (!ACTION_NAME) {
             throw new Error('Frux#createStore: handler must be a named function.');
