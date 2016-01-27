@@ -1,4 +1,6 @@
-export function sendOperator(currentState, payload) {
+import * as ActionTypes from './action-types';
+
+const handleOperatorInsertion = (currentState, payload) => {
   const { operator } = payload;
   const expression = currentState.get('expression');
   const lastInExpresion = expression.last();
@@ -18,9 +20,10 @@ export function sendOperator(currentState, payload) {
     const expresion = state.get('expression');
     return state.set('expression', expresion.push(operator));
   });
-}
+};
 
-export function inputNumber(currentState, payload) {
+
+const handleNumberInsertion = (currentState, payload) => {
   const { number } = payload;
   const expression = currentState.get('expression');
   const lastInExpresion = expression.last();
@@ -37,9 +40,9 @@ export function inputNumber(currentState, payload) {
     const nextExpr = state.get('expression');
     return state.set('expression', nextExpr.push(nextNumber));
   });
-}
+};
 
-export function computeResult(currentState) {
+const handleComputeResult = (currentState) => {
   const stringifiedExpr = currentState.get('expression').join('');
   const result = (
     eval(stringifiedExpr).toString().split('').map((item) => {
@@ -59,9 +62,9 @@ export function computeResult(currentState) {
       .set('expression', nextExpr.concat(result))
       .set('result', result.join(''));
   });
-}
+};
 
-export function deleteLast(currentState, payload, initialState) {
+const handleDeleteLast = (currentState, payload, initialState) => {
   const expr = currentState.get('expression');
   const stringifiedExpr = expr.join('');
   const result = stringifiedExpr;
@@ -71,8 +74,17 @@ export function deleteLast(currentState, payload, initialState) {
   }
 
   return currentState.set('expression', expr.pop());
-}
+};
 
-export function clear(currentState, payload, initialState) {
+const handleClear = (currentState, payload, initialState) => {
   return initialState;
-}
+};
+
+
+export default {
+  [ActionTypes.SEND_OPERATOR]: handleOperatorInsertion,
+  [ActionTypes.INPUT_NUMBER]: handleNumberInsertion,
+  [ActionTypes.DELETE_LAST]: handleDeleteLast,
+  [ActionTypes.COMPUTE_RESULT]: handleComputeResult,
+  [ActionTypes.CLEAR]: handleClear
+};

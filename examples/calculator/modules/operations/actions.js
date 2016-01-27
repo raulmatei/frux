@@ -8,27 +8,32 @@ import {
 } from './action-types';
 
 export function sendOperator(operator) {
-  dispatch({
+  return {
     type: SEND_OPERATOR,
     payload: { operator }
-  });
+  };
+}
+
+function inputNumberAction(payload) {
+  return { type: INPUT_NUMBER, payload };
 }
 
 export function inputNumber(number) {
-  dispatch({
-    type: INPUT_NUMBER,
-    payload: { number }
+  return new Promise((resolve, reject) => {
+    window.setTimeout(() => {
+      resolve(() => inputNumberAction({ number }));
+    }, 1000);
   });
 }
 
 export function deleteLast() {
-  dispatch({ type: DELETE_LAST });
+  return { type: DELETE_LAST };
 }
 
 export function computeResult() {
-  dispatch({ type: COMPUTE_RESULT });
+  return { type: COMPUTE_RESULT };
 }
 
 export function clear() {
-  dispatch({ type: CLEAR });
+  return { type: CLEAR };
 }
