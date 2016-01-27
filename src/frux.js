@@ -2,13 +2,12 @@ import React, { PropTypes } from 'react';
 import { Reactor } from 'nuclear-js';
 import { render } from 'react-dom';
 import invariant from 'invariant';
-import isFunction from 'lodash/lang/isFunction';
-import forEach from 'lodash/collection/forEach';
+import isFunction from 'lodash/isFunction';
+import forEach from 'lodash/forEach';
 import { createMountingNode } from './utils';
-import { nuclearComponent } from 'nuclear-js-react-addons';
+import { connect as nuclearConnect, Provider } from 'nuclear-js-react-addons';
 import createStore from './create-store';
 import createModule from './create-module';
-import Root from './containers/root';
 
 let reactor = null;
 
@@ -24,7 +23,7 @@ function connect(BaseComponent) {
     `${displayName} component should implement 'getDataBindings' static method`
   );
 
-  return nuclearComponent(BaseComponent, (props) => getDataBindings(getters));
+  return nuclearConnect((props) => getDataBindings(getters))(BaseComponent);
 }
 
 function mount(component, node) {
@@ -36,9 +35,9 @@ function mount(component, node) {
   );
 
   render(
-    <Root reactor={reactor}>
+    <Provider reactor={reactor}>
       {component}
-    </Root>,
+    </Provider>,
     mountNode
   );
 }
