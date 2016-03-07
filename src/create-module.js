@@ -1,7 +1,7 @@
-import pick from 'lodash/object/pick';
-import isEmpty from 'lodash/lang/isEmpty';
-import isArray from 'lodash/lang/isArray';
-import isFunction from 'lodash/lang/isFunction';
+import pickBy from 'lodash/pickBy';
+import isEmpty from 'lodash/isEmpty';
+import isArray from 'lodash/isArray';
+import isFunction from 'lodash/isFunction';
 
 export default function createModule({ stores, actions, getters }) {
   return (name, target, reactor) => {
@@ -9,7 +9,7 @@ export default function createModule({ stores, actions, getters }) {
       reactor.registerStores(stores);
     }
 
-    target.actions[name] = pick(actions, isFunction);
-    target.getters[name] = pick(getters, isArray);
+    target.actions[name] = pickBy(actions, isFunction);
+    target.getters[name] = pickBy(getters, isArray);
   };
 }
