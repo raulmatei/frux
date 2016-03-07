@@ -13,6 +13,7 @@ let reactor = null;
 
 const actions = {};
 const getters = {};
+const middlewaresRegistry = [];
 
 function connect(BaseComponent) {
   const displayName = BaseComponent.displayName || BaseComponent.name;
@@ -27,27 +28,42 @@ function connect(BaseComponent) {
 }
 
 function mount(component, node) {
-  const mountNode = node || createMountingNode();
+  const WrappedWithProvider = (
+    <Provider reactor={reactor}>
+      {component}
+    </Provider>
+  );
 
   invariant(
     component,
     'frux#mount: No component was provided.'
   );
 
-  render(
-    <Provider reactor={reactor}>
-      {component}
-    </Provider>,
-    mountNode
-  );
+  if (process.env.IS_REACT_NATIVE) {
+    return WrappedWithProvider;
+  }
+
+  render(WrappedWithProvider, node || createMountingNode());
+}
+
+function use(...middlewares) {
+  middlewares.forEach((middleware) => {
+    invariant(
+      isFunction(middleware),
+      `Check your middlewares and make sure they are all functions.`
+    );
+
+    middlewaresRegistry.push(middleware);
+  });
+
+  // We just keep track of middlewares, nothing's yet implemented
+  console.log(middlewaresRegistry);
 }
 
 function registerModule(name, module) {
   const target = { actions, getters };
 
-  if (isFunction(module)) {
-    module(name, target, reactor);
-  }
+  module(name, target, reactor);
 }
 
 function initialize({ options, ...modules }) {
@@ -101,6 +117,7 @@ export function reset() {
 }
 
 export default {
+  use,
   initialize,
   mount,
   registerModule,
