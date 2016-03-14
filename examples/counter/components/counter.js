@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import frux, { actions, getters } from 'frux';
+import frux from 'frux';
+import { actions } from '../application-context';
 
 const commonStyles = {
   width: 32,
@@ -31,7 +32,7 @@ const btnStyles = {
 };
 
 class Counter extends Component {
-  static getDataBindings() {
+  static getDataBindings(getters) {
     return {
       count: getters.counter.count
     };

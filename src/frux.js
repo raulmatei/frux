@@ -1,17 +1,19 @@
-import React from 'react';
-import invariant from 'invariant';
-import { render } from 'react-dom';
+import React, { PropTypes } from 'react';
 import { Reactor } from 'nuclear-js';
-import forEach from 'lodash/collection/forEach';
-import isFunction from 'lodash/lang/isFunction';
-import { nuclearComponent } from 'nuclear-js-react-addons';
-import Root from './containers/root';
+import { render } from 'react-dom';
+import invariant from 'invariant';
+import isFunction from 'lodash/isFunction';
+import forEach from 'lodash/forEach';
+import { createMountingNode } from './utils';
+import { connect as nuclearConnect, Provider } from 'nuclear-js-react-addons';
 import createStore from './create-store';
 import createModule from './create-module';
 
 let reactor = null;
-export const actions = {};
-export const getters = {};
+
+const actions = {};
+const getters = {};
+const middlewaresRegistry = [];
 
 function connect(BaseComponent) {
   const displayName = BaseComponent.displayName || BaseComponent.name;
@@ -22,52 +24,66 @@ function connect(BaseComponent) {
     `${displayName} component should implement 'getDataBindings' static method`
   );
 
-  return nuclearComponent(BaseComponent, (props) => getDataBindings());
+  return nuclearConnect((props) => getDataBindings(getters))(BaseComponent);
 }
 
-function createMountingNode() {
-  const bodyElement = document.body;
-  const nextNode = bodyElement.firstChild;
-  const rootElement = document.createElement('div');
-
-  bodyElement.insertBefore(rootElement, nextNode);
-  return rootElement;
-}
-
-function mount(component, node = createMountingNode()) {
-  render(
-    <Root reactor={reactor}>
-      {React.createElement(component)}
-    </Root>,
-    node
+function mount(component, node) {
+  const WrappedWithProvider = (
+    <Provider reactor={reactor}>
+      {component}
+    </Provider>
   );
-}
-
-function initialize({ component, node, options, ...modules }) {
-  const target = { actions, getters };
 
   invariant(
     component,
-    'frux#initialize: No component was provided.'
+    'frux#mount: No component was provided.'
   );
 
+  if (process.env.IS_REACT_NATIVE) {
+    return WrappedWithProvider;
+  }
+
+  render(WrappedWithProvider, node || createMountingNode());
+}
+
+function use(...middlewares) {
+  middlewares.forEach((middleware) => {
+    invariant(
+      isFunction(middleware),
+      `Check your middlewares and make sure they are all functions.`
+    );
+
+    middlewaresRegistry.push(middleware);
+  });
+
+  // We just keep track of middlewares, nothing's yet implemented
+  console.log(middlewaresRegistry);
+}
+
+function registerModule(name, module) {
+  const target = { actions, getters };
+
+  module(name, target, reactor);
+}
+
+function initialize({ options, ...modules }) {
   reactor = new Reactor(options);
 
   forEach(modules, (module, name) => {
     if (isFunction(module)) {
-      module(name, target, reactor);
+      registerModule(name, module);
     }
   });
 
-  mount(component, node);
-}
-
-export function batch(callback) {
-  reactor.batch(callback);
+  return { actions, getters };
 }
 
 export function dispatch({ type, payload }) {
   reactor.dispatch(type, payload);
+}
+
+export function batch(callback) {
+  reactor.batch(callback);
 }
 
 export function evaluate(getter) {
@@ -78,10 +94,22 @@ export function observe(getter, callback) {
   reactor.observe(getter, callback);
 
   return {
-    unobserve(getter, callback) {
+    unobserve() {
       reactor.unobserve(getter, callback);
     }
   };
+}
+
+export function serialize(storeName) {
+  if (typeof storeName !== 'string' || !storeName) {
+    return reactor.serialize();
+  }
+
+  return reactor.evaluateToJS([storeName]);
+}
+
+export function loadState(stores) {
+  reactor.loadState(stores);
 }
 
 export function reset() {
@@ -89,13 +117,18 @@ export function reset() {
 }
 
 export default {
+  use,
   initialize,
+  mount,
+  registerModule,
   createModule,
   createStore,
+  dispatch,
   batch,
   evaluate,
-  dispatch,
   observe,
+  loadState,
+  serialize,
   reset,
   connect
 };

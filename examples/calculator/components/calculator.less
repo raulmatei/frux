@@ -1,0 +1,152 @@
+@white: #ffffff;
+@black: #000000;
+@orange: #E74C3C;
+@blue: #3498db;
+@dark-gray: #aaaaaa;
+@light-gray: #ecf0f1;
+@dark-blue: #2c3e50;
+
+@font-primary: "Segoe UI";
+@font-symbols: "Segoe UI Symbol";
+
+.user-select(@value: none) {
+  -moz-user-select: @value;
+  -webkit-user-select: @value;
+  -ms-user-select: @value;
+   user-select: @value;
+}
+
+* {
+  font-family: @font-primary;
+}
+
+html,
+body {
+  height: 100%;
+
+  font-size: 100%;
+  .user-select();
+
+  background-color: lighten(@dark-blue, 20%);
+}
+
+.calculator-viewport {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 330px;
+  height: 494px;
+
+  margin-top: -248px;
+  margin-left: -160px;
+
+  background-color: @dark-blue;
+  box-shadow: 0 0 42px fade(@black, 35%);
+}
+
+table {
+  cursor: default;
+
+  tr {
+    padding: 0;
+    margin: 0;
+  }
+
+  td {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.calculator-result {
+  padding: 0 9px;
+  background-color: @white;
+
+  .expression {
+    height: 24px;
+    max-width: 308px;
+
+    line-height: 32px;
+    text-align: right;
+    color: @dark-gray;
+  }
+
+  .last {
+    display: block;
+    max-width: 308px;
+    height: 56px;
+
+    font-size: 140%;
+    font-weight: bold;
+    line-height: 56px;
+    text-align: right;
+    color: @dark-blue;
+  }
+
+  .operator {
+    margin: 0 4px;
+  }
+}
+
+button {
+  width: 80px;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  background-color: @light-gray;
+  font-size: 24px;
+  color: @dark-blue;
+  user-select: none;
+  color: @white;
+  background-color: lighten(@dark-blue, 10%);
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: 1px dotted darken(@white, 10%);
+  }
+
+  &.equal {
+    color: @white;
+    background-color: @orange;
+
+    &:hover {
+      background-color: darken(@orange, 10%);
+    }
+  }
+
+  &.signs {
+    color: @white;
+    background-color: @blue;
+
+    &:hover {
+      background-color: darken(@blue, 10%);
+    }
+  }
+
+  &.backspace {
+    font-family: @font-symbols;
+  }
+
+  &.wider {
+    width: 162px;
+  }
+}
+
+.hidden {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+
+  width: 0;
+  height: 0;
+
+  opacity: 0;
+
+  outline: none;
+  overflow: hidden;
+}
