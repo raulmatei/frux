@@ -1,6 +1,6 @@
 {
   "name": "frux",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Simple wrapper over NuclearJS flux implementation",
   "main": "./lib/frux.js",
   "author": "Raul Matei",
