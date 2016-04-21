@@ -1,14 +1,16 @@
-var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    javascript: './src/frux'
+    'frux': './src/frux',
+    'frux.min': './src/frux'
   },
 
   output: {
+    path: './dist',
     library: 'frux',
     libraryTarget: 'umd',
-    filename: './dist/frux.js'
+    filename: '[name].js'
   },
 
   module: {
@@ -20,6 +22,13 @@ module.exports = {
       }
     ]
   },
+
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      include: /\.min\.js$/,
+      minimize: true
+    })
+  ],
 
   resolve: {
     extensions: ['', '.js', '.jsx']
