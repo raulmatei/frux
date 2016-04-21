@@ -2,11 +2,13 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    javascript: './index'
+    javascript: './src/frux'
   },
 
   output: {
-    filename: './dist/application.js'
+    library: 'frux',
+    libraryTarget: 'umd',
+    filename: './dist/frux.js'
   },
 
   module: {
@@ -30,6 +32,12 @@ module.exports = {
         commonjs2: 'react',
         commonjs: 'react',
         amd: 'react'
+      },
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom'
       }
     }
   ]
