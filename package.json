@@ -14,7 +14,8 @@
   },
   "files": [
     "lib",
-    "src"
+    "src",
+    "dist"
   ],
   "dependencies": {
     "flux-standard-action": "^0.6.0",
