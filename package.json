@@ -2,7 +2,7 @@
   "name": "frux",
   "version": "0.2.1",
   "description": "Simple wrapper over NuclearJS flux implementation",
-  "main": "./lib/frux.js",
+  "main": "./dist/frux.js",
   "author": "Raul Matei",
   "license": "Artistic-2.0",
   "repository": {
