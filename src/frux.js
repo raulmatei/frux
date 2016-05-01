@@ -6,9 +6,8 @@ import isFunction from 'lodash/isFunction';
 import forEach from 'lodash/forEach';
 import { createMountingNode } from './utils';
 import { connect as nuclearConnect, Provider } from 'nuclear-js-react-addons';
-
-export createStore from './create-store';
-export createModule from './create-module';
+import createStore from './create-store';
+import createModule from './create-module';
 
 let reactor = null;
 
@@ -16,7 +15,7 @@ const actions = {};
 const getters = {};
 const middlewaresRegistry = [];
 
-export function connect(BaseComponent) {
+function connect(BaseComponent) {
   const displayName = BaseComponent.displayName || BaseComponent.name;
   const getDataBindings = BaseComponent.getDataBindings;
 
@@ -28,7 +27,7 @@ export function connect(BaseComponent) {
   return nuclearConnect((props) => getDataBindings(getters))(BaseComponent);
 }
 
-export function mount(component, node) {
+function mount(component, node) {
   const WrappedWithProvider = (
     <Provider reactor={reactor}>
       {component}
@@ -47,7 +46,7 @@ export function mount(component, node) {
   render(WrappedWithProvider, node || createMountingNode());
 }
 
-export function use(...middlewares) {
+function use(...middlewares) {
   middlewares.forEach((middleware) => {
     invariant(
       isFunction(middleware),
@@ -61,13 +60,13 @@ export function use(...middlewares) {
   console.log(middlewaresRegistry);
 }
 
-export function registerModule(name, module) {
+function registerModule(name, module) {
   const target = { actions, getters };
 
   module(name, target, reactor);
 }
 
-export function initialize({ options, ...modules }) {
+function initialize({ options, ...modules }) {
   reactor = new Reactor(options);
 
   forEach(modules, (module, name) => {
@@ -116,3 +115,29 @@ export function loadState(stores) {
 export function reset() {
   reactor.reset();
 }
+
+export default {
+  use,
+  initialize,
+  mount,
+  registerModule,
+  createModule,
+  createStore,
+  dispatch,
+  batch,
+  evaluate,
+  observe,
+  loadState,
+  serialize,
+  reset,
+  connect
+};
+
+export {
+  Immutable,
+  isKeyPath,
+  isGetter,
+  toJS,
+  toImmutable,
+  isImmutable
+} from 'nuclear-js';
