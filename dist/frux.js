@@ -7,7 +7,7 @@
 		exports["frux"] = factory(require("react"), require("react-dom"));
 	else
 		root["frux"] = factory(root["React"], root["ReactDOM"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -61,6 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.isImmutable = exports.toImmutable = exports.toJS = exports.isGetter = exports.isKeyPath = exports.Immutable = undefined;
 	exports.dispatch = dispatch;
 	exports.batch = batch;
 	exports.evaluate = evaluate;
@@ -69,11 +70,48 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.loadState = loadState;
 	exports.reset = reset;
 
-	var _react = __webpack_require__(2);
+	var _nuclearJs = __webpack_require__(2);
+
+	Object.defineProperty(exports, 'Immutable', {
+	  enumerable: true,
+	  get: function get() {
+	    return _nuclearJs.Immutable;
+	  }
+	});
+	Object.defineProperty(exports, 'isKeyPath', {
+	  enumerable: true,
+	  get: function get() {
+	    return _nuclearJs.isKeyPath;
+	  }
+	});
+	Object.defineProperty(exports, 'isGetter', {
+	  enumerable: true,
+	  get: function get() {
+	    return _nuclearJs.isGetter;
+	  }
+	});
+	Object.defineProperty(exports, 'toJS', {
+	  enumerable: true,
+	  get: function get() {
+	    return _nuclearJs.toJS;
+	  }
+	});
+	Object.defineProperty(exports, 'toImmutable', {
+	  enumerable: true,
+	  get: function get() {
+	    return _nuclearJs.toImmutable;
+	  }
+	});
+	Object.defineProperty(exports, 'isImmutable', {
+	  enumerable: true,
+	  get: function get() {
+	    return _nuclearJs.isImmutable;
+	  }
+	});
+
+	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _nuclearJs = __webpack_require__(3);
 
 	var _reactDom = __webpack_require__(4);
 
@@ -335,12 +373,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ },
-/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -7090,6 +7122,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	;
 
 /***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ },
 /* 4 */
 /***/ function(module, exports) {
 
@@ -11396,7 +11434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(3);
 
 	var _reactorShape = __webpack_require__(114);
 
@@ -11522,7 +11560,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(3);
 
 	exports['default'] = _react.PropTypes.shape({
 	  dispatch: _react.PropTypes.func.isRequired,
@@ -11592,7 +11630,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(3);
 
 	var _reactorShape = __webpack_require__(114);
 
@@ -11641,7 +11679,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(3);
 
 	/**
 	 * Iterate on an object
@@ -11724,7 +11762,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
 
@@ -11941,7 +11979,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _snakeCase2 = _interopRequireDefault(_snakeCase);
 
-	var _nuclearJs = __webpack_require__(3);
+	var _nuclearJs = __webpack_require__(2);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
