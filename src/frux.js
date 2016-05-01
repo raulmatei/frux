@@ -132,3 +132,12 @@ export default {
   reset,
   connect
 };
+
+export {
+  Immutable,
+  isKeyPath,
+  isGetter,
+  toJS,
+  toImmutable,
+  isImmutable
+} from 'nuclear-js';
