@@ -1,6 +1,6 @@
 {
   "name": "frux",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Simple wrapper over NuclearJS flux implementation",
   "main": "./dist/frux.js",
   "author": "Raul Matei",
@@ -10,7 +10,7 @@
     "url": "https://github.com/raulmatei/frux"
   },
   "scripts": {
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib && webpack"
   },
   "files": [
     "lib",
@@ -25,8 +25,8 @@
     "nuclear-js-react-addons": "^0.4.0"
   },
   "peerDependencies": {
-    "react": "^0.14 || ^15.0.0-rc || ^15.0.0",
-    "react-dom": "^0.14 || ^15.0.0-rc || ^15.0.0"
+    "react": ">=0.14",
+    "react-dom": ">=0.14"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
@@ -34,10 +34,8 @@
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "react-hot-loader": "^1.3.0",
-    "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "webpack": "^1.13.0"
   }
 }
