@@ -174,6 +174,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  (0, _reactDom.render)(WrappedWithProvider, node || (0, _utils.createMountingNode)());
 	}
 
+	function mountServer(component) {
+	  return _react2.default.createElement(
+	    _nuclearJsReactAddons.Provider,
+	    { reactor: reactor },
+	    component
+	  );
+	}
+
 	function use() {
 	  for (var _len = arguments.length, middlewares = Array(_len), _key = 0; _key < _len; _key++) {
 	    middlewares[_key] = arguments[_key];
@@ -256,6 +264,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  use: use,
 	  initialize: initialize,
 	  mount: mount,
+	  mountServer: mountServer,
 	  registerModule: registerModule,
 	  createModule: _createModule2.default,
 	  createStore: _createStore2.default,

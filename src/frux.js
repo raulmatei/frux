@@ -46,6 +46,14 @@ function mount(component, node) {
   render(WrappedWithProvider, node || createMountingNode());
 }
 
+function mountServer(component) {
+  return (
+    <Provider reactor={reactor}>
+      {component}
+    </Provider>
+  );
+}
+
 function use(...middlewares) {
   middlewares.forEach((middleware) => {
     invariant(
@@ -120,6 +128,7 @@ export default {
   use,
   initialize,
   mount,
+  mountServer,
   registerModule,
   createModule,
   createStore,
