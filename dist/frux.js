@@ -7,7 +7,7 @@
 		exports["frux"] = factory(require("react"), require("react-dom"));
 	else
 		root["frux"] = factory(root["React"], root["ReactDOM"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,7 +54,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -68,7 +68,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.loadState = loadState;
 	exports.reset = reset;
 
-	var _nuclearJs = __webpack_require__(2);
+	var _nuclearJs = __webpack_require__(1);
 
 	Object.defineProperty(exports, 'Immutable', {
 	  enumerable: true,
@@ -107,13 +107,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _react = __webpack_require__(3);
+	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(4);
+	var _reactDom = __webpack_require__(3);
 
-	var _invariant = __webpack_require__(5);
+	var _invariant = __webpack_require__(4);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -136,6 +136,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _createModule = __webpack_require__(131);
 
 	var _createModule2 = _interopRequireDefault(_createModule);
+
+	var _env = __webpack_require__(143);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -167,19 +169,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  (0, _invariant2.default)(component, 'frux#mount: No component was provided.');
 
-	  if (process.env.IS_REACT_NATIVE) {
-	    return WrappedWithProvider;
+	  if (_env.canUseDOM) {
+	    return (0, _reactDom.render)(WrappedWithProvider, node || (0, _utils.createMountingNode)());
 	  }
 
-	  (0, _reactDom.render)(WrappedWithProvider, node || (0, _utils.createMountingNode)());
-	}
-
-	function mountServer(component) {
-	  return _react2.default.createElement(
-	    _nuclearJsReactAddons.Provider,
-	    { reactor: reactor },
-	    component
-	  );
+	  return WrappedWithProvider;
 	}
 
 	function use() {
@@ -277,107 +271,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  reset: reset,
 	  connect: connect
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
-
-	// shim for using process in browser
-
-	var process = module.exports = {};
-	var queue = [];
-	var draining = false;
-	var currentQueue;
-	var queueIndex = -1;
-
-	function cleanUpNextTick() {
-	    draining = false;
-	    if (currentQueue.length) {
-	        queue = currentQueue.concat(queue);
-	    } else {
-	        queueIndex = -1;
-	    }
-	    if (queue.length) {
-	        drainQueue();
-	    }
-	}
-
-	function drainQueue() {
-	    if (draining) {
-	        return;
-	    }
-	    var timeout = setTimeout(cleanUpNextTick);
-	    draining = true;
-
-	    var len = queue.length;
-	    while(len) {
-	        currentQueue = queue;
-	        queue = [];
-	        while (++queueIndex < len) {
-	            if (currentQueue) {
-	                currentQueue[queueIndex].run();
-	            }
-	        }
-	        queueIndex = -1;
-	        len = queue.length;
-	    }
-	    currentQueue = null;
-	    draining = false;
-	    clearTimeout(timeout);
-	}
-
-	process.nextTick = function (fun) {
-	    var args = new Array(arguments.length - 1);
-	    if (arguments.length > 1) {
-	        for (var i = 1; i < arguments.length; i++) {
-	            args[i - 1] = arguments[i];
-	        }
-	    }
-	    queue.push(new Item(fun, args));
-	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
-	    }
-	};
-
-	// v8 likes predictible objects
-	function Item(fun, array) {
-	    this.fun = fun;
-	    this.array = array;
-	}
-	Item.prototype.run = function () {
-	    this.fun.apply(null, this.array);
-	};
-	process.title = 'browser';
-	process.browser = true;
-	process.env = {};
-	process.argv = [];
-	process.version = ''; // empty string to avoid regexp issues
-	process.versions = {};
-
-	function noop() {}
-
-	process.on = noop;
-	process.addListener = noop;
-	process.once = noop;
-	process.off = noop;
-	process.removeListener = noop;
-	process.removeAllListeners = noop;
-	process.emit = noop;
-
-	process.binding = function (name) {
-	    throw new Error('process.binding is not supported');
-	};
-
-	process.cwd = function () { return '/' };
-	process.chdir = function (dir) {
-	    throw new Error('process.chdir is not supported');
-	};
-	process.umask = function() { return 0; };
-
-
-/***/ },
-/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -7127,6 +7023,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	;
 
 /***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ },
 /* 3 */
 /***/ function(module, exports) {
 
@@ -7134,12 +7036,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ },
-/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7194,7 +7090,104 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = invariant;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	// shim for using process in browser
+
+	var process = module.exports = {};
+	var queue = [];
+	var draining = false;
+	var currentQueue;
+	var queueIndex = -1;
+
+	function cleanUpNextTick() {
+	    draining = false;
+	    if (currentQueue.length) {
+	        queue = currentQueue.concat(queue);
+	    } else {
+	        queueIndex = -1;
+	    }
+	    if (queue.length) {
+	        drainQueue();
+	    }
+	}
+
+	function drainQueue() {
+	    if (draining) {
+	        return;
+	    }
+	    var timeout = setTimeout(cleanUpNextTick);
+	    draining = true;
+
+	    var len = queue.length;
+	    while(len) {
+	        currentQueue = queue;
+	        queue = [];
+	        while (++queueIndex < len) {
+	            if (currentQueue) {
+	                currentQueue[queueIndex].run();
+	            }
+	        }
+	        queueIndex = -1;
+	        len = queue.length;
+	    }
+	    currentQueue = null;
+	    draining = false;
+	    clearTimeout(timeout);
+	}
+
+	process.nextTick = function (fun) {
+	    var args = new Array(arguments.length - 1);
+	    if (arguments.length > 1) {
+	        for (var i = 1; i < arguments.length; i++) {
+	            args[i - 1] = arguments[i];
+	        }
+	    }
+	    queue.push(new Item(fun, args));
+	    if (queue.length === 1 && !draining) {
+	        setTimeout(drainQueue, 0);
+	    }
+	};
+
+	// v8 likes predictible objects
+	function Item(fun, array) {
+	    this.fun = fun;
+	    this.array = array;
+	}
+	Item.prototype.run = function () {
+	    this.fun.apply(null, this.array);
+	};
+	process.title = 'browser';
+	process.browser = true;
+	process.env = {};
+	process.argv = [];
+	process.version = ''; // empty string to avoid regexp issues
+	process.versions = {};
+
+	function noop() {}
+
+	process.on = noop;
+	process.addListener = noop;
+	process.once = noop;
+	process.off = noop;
+	process.removeListener = noop;
+	process.removeAllListeners = noop;
+	process.emit = noop;
+
+	process.binding = function (name) {
+	    throw new Error('process.binding is not supported');
+	};
+
+	process.cwd = function () { return '/' };
+	process.chdir = function (dir) {
+	    throw new Error('process.chdir is not supported');
+	};
+	process.umask = function() { return 0; };
+
 
 /***/ },
 /* 6 */
@@ -11435,7 +11428,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _react = __webpack_require__(3);
+	var _react = __webpack_require__(2);
 
 	var _reactorShape = __webpack_require__(114);
 
@@ -11561,7 +11554,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _react = __webpack_require__(3);
+	var _react = __webpack_require__(2);
 
 	exports['default'] = _react.PropTypes.shape({
 	  dispatch: _react.PropTypes.func.isRequired,
@@ -11631,7 +11624,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _react = __webpack_require__(3);
+	var _react = __webpack_require__(2);
 
 	var _reactorShape = __webpack_require__(114);
 
@@ -11680,7 +11673,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _react = __webpack_require__(3);
+	var _react = __webpack_require__(2);
 
 	/**
 	 * Iterate on an object
@@ -11763,7 +11756,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _react = __webpack_require__(3);
+	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
@@ -11978,7 +11971,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _snakeCase2 = _interopRequireDefault(_snakeCase);
 
-	var _nuclearJs = __webpack_require__(2);
+	var _nuclearJs = __webpack_require__(1);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12850,6 +12843,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = iteratorToArray;
 
+
+/***/ },
+/* 143 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 /***/ }
 /******/ ])
