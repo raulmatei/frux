@@ -130,7 +130,6 @@ export default {
   use,
   initialize,
   mount,
-  mountServer,
   registerModule,
   createModule,
   createStore,
