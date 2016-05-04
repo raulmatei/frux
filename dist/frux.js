@@ -258,7 +258,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  use: use,
 	  initialize: initialize,
 	  mount: mount,
-	  mountServer: mountServer,
 	  registerModule: registerModule,
 	  createModule: _createModule2.default,
 	  createStore: _createStore2.default,
