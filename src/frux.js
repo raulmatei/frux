@@ -8,6 +8,7 @@ import { createMountingNode } from './utils';
 import { connect as nuclearConnect, Provider } from 'nuclear-js-react-addons';
 import createStore from './create-store';
 import createModule from './create-module';
+import { canUseDOM } from './env';
 
 let reactor = null;
 
@@ -39,19 +40,11 @@ function mount(component, node) {
     'frux#mount: No component was provided.'
   );
 
-  if (process.env.IS_REACT_NATIVE) {
-    return WrappedWithProvider;
+  if (canUseDOM) {
+    return render(WrappedWithProvider, node || createMountingNode());
   }
 
-  render(WrappedWithProvider, node || createMountingNode());
-}
-
-function mountServer(component) {
-  return (
-    <Provider reactor={reactor}>
-      {component}
-    </Provider>
-  );
+  return WrappedWithProvider;
 }
 
 function use(...middlewares) {
@@ -124,6 +117,15 @@ export function reset() {
   reactor.reset();
 }
 
+export {
+  Immutable,
+  isKeyPath,
+  isGetter,
+  toJS,
+  toImmutable,
+  isImmutable
+} from 'nuclear-js';
+
 export default {
   use,
   initialize,
@@ -141,12 +143,3 @@ export default {
   reset,
   connect
 };
-
-export {
-  Immutable,
-  isKeyPath,
-  isGetter,
-  toJS,
-  toImmutable,
-  isImmutable
-} from 'nuclear-js';
