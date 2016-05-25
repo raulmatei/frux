@@ -79,7 +79,7 @@ test('Utils `isFSA({ type, extra })`', (assert) => {
   const expected = false;
 
   assert.is(actual, expected,
-    'should return `false` when a `type` property exists');
+    'should return `false` when an `extra` property exists');
 });
 
 test('Utils `isFSA({ type, meta })`', (assert) => {
@@ -87,5 +87,5 @@ test('Utils `isFSA({ type, meta })`', (assert) => {
   const expected = true;
 
   assert.is(actual, expected,
-    'should return `true` when an `meta` property exists');
+    'should return `true` when a `meta` property exists');
 });
