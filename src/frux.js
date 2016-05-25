@@ -25,7 +25,7 @@ function connect(BaseComponent) {
     `${displayName} component should implement 'getDataBindings' static method`
   );
 
-  return nuclearConnect((props) => getDataBindings(getters))(BaseComponent);
+  return nuclearConnect((props) => getDataBindings(getters, props))(BaseComponent);
 }
 
 function mount(component, node) {
