@@ -11,7 +11,7 @@ export function createMountingNode() {
 }
 
 export function isPromise(value) {
-  return value && (value instanceof Promise || isFunction(value.then));
+  return !!value && (value instanceof Promise || isFunction(value.then));
 }
 
 export function isStandardAction(value) {
