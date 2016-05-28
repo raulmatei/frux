@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import invariant from 'invariant';
 import isFunction from 'lodash/isFunction';
 import forEach from 'lodash/forEach';
-import { createMountingNode } from './utils';
+import createMountNode from './create-mount-node';
 import { connect as nuclearConnect, Provider } from 'nuclear-js-react-addons';
 import createStore from './create-store';
 import createModule from './create-module';
@@ -41,7 +41,7 @@ function mount(component, node) {
   );
 
   if (canUseDOM) {
-    return render(WrappedWithProvider, node || createMountingNode());
+    return render(WrappedWithProvider, node || createMountNode());
   }
 
   return WrappedWithProvider;
