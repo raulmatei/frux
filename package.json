@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib && webpack",
-    "test": "ava",
+    "test": "nyc ava --serial",
     "test-watch": "npm run test -- --watch"
   },
   "files": [
@@ -52,6 +52,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "global": "^4.3.0",
+    "nyc": "^6.4.4",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "webpack": "^1.13.1"
