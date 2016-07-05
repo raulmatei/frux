@@ -25,9 +25,11 @@ test('`createModule(undefined)`', (assert) => {
 test('`createModule([])`', (assert) => {
   assert.throws(() => createModule([]), Error,
     'should throw when an empty Array is passed');
+});
 
+test('`createModule([...])`', (assert) => {
   assert.throws(() => createModule([{}, 7, 'abv', null, undefined]), Error,
-    'should throw when an Array is passed');
+    'should throw when a non-empty Array is passed');
 });
 
 test('`createModule({})`', (assert) => {

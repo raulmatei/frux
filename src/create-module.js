@@ -1,18 +1,19 @@
 import pickBy from 'lodash/pickBy';
 import isEmpty from 'lodash/isEmpty';
 import isArray from 'lodash/isArray';
-import isObject from 'lodash/isObject';
+import isPlainObject from 'lodash/isPlainObject';
 import isFunction from 'lodash/isFunction';
+import invariant from 'invariant';
 
 export default function createModule(descriptor) {
   const looksLikeGetter = (value) => isFunction(value) || isArray(value);
 
-  if (!descriptor || (!isObject(descriptor) || isArray(descriptor))) {
-    throw new Error(
-      'createModule() requires a descriptor object ' +
-      '`{ stores, actions, getters }` to be passed as an argument'
-    );
-  }
+  invariant(
+    isPlainObject(descriptor),
+
+    '`createModule()` requires a descriptor object ' +
+    '`{ stores, actions, getters }` to be passed as an argument'
+  );
 
   return (name, target, reactor) => {
     const { stores = {}, actions = {}, getters = {} } = descriptor;
