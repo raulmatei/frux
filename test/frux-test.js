@@ -35,8 +35,10 @@ test('frux#reset()', (assert) => {
   const expected = { counter: { count: 0 } };
 
   actions.counter.increment();
+
+  const count = frux.evaluate(getters.counter.count);
   frux.reset();
 
-  assert.deepEqual(actual, expected,
-    'should reset the store to its initial state');
+  assert.is(count, 1, 'should have the state changed before reset');
+  assert.deepEqual(actual, expected, 'should reset the store to its initial state');
 });
