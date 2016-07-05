@@ -11,6 +11,7 @@ import createModule from './create-module';
 import { canUseDOM } from './env';
 
 let reactor = null;
+let batchDispatchInvocation = (callback) => callback();
 
 const actions = {};
 const getters = {};
@@ -68,7 +69,13 @@ function registerModule(name, module) {
 }
 
 function initialize({ options, ...modules }) {
-  reactor = new Reactor(options);
+  const { dispatchInterceptor, ...rest } = options;
+
+  if (isFunction(dispatchInterceptor)) {
+    batchDispatchInvocation = dispatchInterceptor;
+  }
+
+  reactor = new Reactor(rest);
 
   forEach(modules, (module, name) => {
     if (isFunction(module)) {
@@ -80,7 +87,7 @@ function initialize({ options, ...modules }) {
 }
 
 export function dispatch({ type, payload }) {
-  reactor.dispatch(type, payload);
+  batchDispatchInvocation(() => reactor.dispatch(type, payload));
 }
 
 export function batch(callback) {
