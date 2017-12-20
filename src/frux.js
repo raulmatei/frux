@@ -1,14 +1,14 @@
-import React, { PropTypes } from 'react';
-import { Reactor } from 'nuclear-js';
-import { render } from 'react-dom';
+import React from 'react';
+import {render} from 'react-dom';
+import {Reactor} from 'nuclear-js';
+import {connect as nuclearConnect, Provider} from 'nuclear-js-react-addons';
 import invariant from 'invariant';
 import isFunction from 'lodash/isFunction';
 import forEach from 'lodash/forEach';
 import createMountNode from './create-mount-node';
-import { connect as nuclearConnect, Provider } from 'nuclear-js-react-addons';
 import createStore from './create-store';
 import createModule from './create-module';
-import { canUseDOM } from './env';
+import {canUseDOM} from './env';
 
 let reactor = null;
 let batchDispatchInvocation = (callback) => callback();
