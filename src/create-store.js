@@ -1,8 +1,7 @@
 import forEach from 'lodash/forEach';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
-import snakeCase from 'lodash/snakeCase';
-import { Store, toImmutable } from 'nuclear-js';
+import {Store, toImmutable} from 'nuclear-js';
 
 export default function createStore(initialState, handlers) {
   const immutableState = toImmutable(initialState);

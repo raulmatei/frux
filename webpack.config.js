@@ -1,16 +1,20 @@
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+
+const srcPath = path.resolve(__dirname, './src/frux');
+const distPath = path.resolve(__dirname, './dist');
 
 module.exports = {
   entry: {
-    'frux': './src/frux',
-    'frux.min': './src/frux'
+    'frux': srcPath,
+    'frux.min': srcPath,
   },
 
   output: {
-    path: './dist',
+    path: distPath,
     library: 'frux',
     libraryTarget: 'umd',
-    filename: '[name].js'
+    filename: '[name].js',
   },
 
   module: {
@@ -18,20 +22,23 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
-      }
-    ]
+        loaders: ['babel-loader'],
+      },
+    ],
   },
 
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       include: /\.min\.js$/,
-      minimize: true
-    })
+      minimize: true,
+    }),
   ],
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: [
+      '.js',
+      '.jsx',
+    ],
   },
 
   externals: [
@@ -40,14 +47,14 @@ module.exports = {
         root: 'React',
         commonjs2: 'react',
         commonjs: 'react',
-        amd: 'react'
+        amd: 'react',
       },
       'react-dom': {
         root: 'ReactDOM',
         commonjs2: 'react-dom',
         commonjs: 'react-dom',
-        amd: 'react-dom'
-      }
-    }
-  ]
+        amd: 'react-dom',
+      },
+    },
+  ],
 };
